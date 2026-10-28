@@ -17,19 +17,22 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);lin
 .nav-logo{display:flex;align-items:center;gap:10px}
 .logo-icon{width:44px;height:44px;border-radius:10px;background:var(--accent);display:flex;align-items:center;justify-content:center;color:#0f0f0f;font-weight:700}
 .nav-logo span{font-weight:700;font-size:22px;letter-spacing:-.02em;color:var(--text)}
-.nav-links{display:flex;gap:32px;align-items:center;font-size:15px;font-weight:500}
+.nav-links{display:flex;gap:28px;align-items:center;font-size:15px;font-weight:500}
 .nav-link{color:var(--muted);text-decoration:none;transition:color .2s}
 .nav-link:hover{color:var(--accent)}
 .nav-btn{padding:10px 24px;border-radius:8px;background:var(--accent);color:#0f0f0f;text-decoration:none;font-weight:700;font-size:14px;transition:all .2s}
 .nav-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(250,204,21,.3)}
 
-/* ===== HERO with expanded sides ===== */
+/* Language switcher */
+.lang-switch{display:flex;gap:4px;margin-right:12px}
+.lang-btn{padding:6px 12px;border-radius:6px;background:transparent;color:var(--muted);border:1px solid var(--border);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s}
+.lang-btn:hover{border-color:var(--accent)}
+.lang-btn.active{background:var(--accent);color:#0f0f0f;border-color:var(--accent)}
+
 .hero{position:relative;overflow:hidden;padding:40px 0}
 .hero-bg{position:absolute;top:0;right:0;width:55%;height:100%;background:radial-gradient(ellipse at 70% 30%,var(--accent-soft),transparent 60%);pointer-events:none}
 .hero-grid-lines{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;opacity:.3;mask-image:linear-gradient(90deg,transparent,black 30%,black 70%,transparent);pointer-events:none}
 .hero-inner{max-width:1200px;margin:0 auto;padding:60px 32px 80px;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:stretch;position:relative;z-index:2}
-
-/* LEFT SIDE - expanded */
 .hero-left{display:flex;flex-direction:column;justify-content:center}
 .hero-tag{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:var(--accent-soft);border:1px solid rgba(250,204,21,.3);border-radius:20px;margin-bottom:28px;width:fit-content}
 .hero-tag span{font-size:13px;font-weight:600;color:var(--accent)}
@@ -56,8 +59,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);lin
 .hero-trust-text{font-size:13px;color:var(--muted)}
 .hero-trust-text strong{color:var(--text)}
 .hero-stars{color:var(--accent);font-size:13px;letter-spacing:2px}
-
-/* RIGHT SIDE - expanded */
 .hero-right{display:flex;flex-direction:column;gap:20px}
 .hero-main-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;box-shadow:0 20px 60px rgba(0,0,0,.4);position:relative;overflow:hidden;flex:1}
 .hero-main-card::before{content:"";position:absolute;top:-50%;right:-20%;width:80%;height:200%;background:radial-gradient(circle,var(--accent-soft),transparent 60%);pointer-events:none}
@@ -68,7 +69,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);lin
 @keyframes twinkle{0%,100%{opacity:.3}50%{opacity:1}}
 .truck-buildings{position:absolute;bottom:45%;left:0;width:100%;height:25%;display:flex;align-items:flex-end;gap:4px;padding:0 10px}
 .truck-bld{flex:1;background:#111;border-top:2px solid #333;position:relative}
-.truck-bld::after{content:"";position:absolute;inset:6px;display:grid;grid-template-columns:repeat(2,1fr);gap:3px}
 .truck-road{position:absolute;bottom:0;left:0;width:100%;height:45%;background:#2a2a2a;border-top:3px solid #444}
 .truck-road-line{position:absolute;top:50%;left:0;width:200%;height:4px;background:repeating-linear-gradient(90deg,var(--accent) 0 30px,transparent 30px 60px);animation:roadMove .8s linear infinite;transform:translateY(-50%)}
 @keyframes roadMove{from{transform:translateX(0) translateY(-50%)}to{transform:translateX(-50%) translateY(-50%)}}
@@ -77,33 +77,32 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);lin
 .truck-wheel{animation:wheelSpin .4s linear infinite;transform-origin:center}
 @keyframes wheelSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 .hero-card-info{position:relative;z-index:2}
-.hero-card-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:16px}
+.hero-card-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:16px;cursor:pointer;transition:all .2s}
+.hero-card-row:hover{padding-left:8px;padding-right:8px}
 .hero-card-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
 .hero-card-status{font-weight:700;font-size:16px;color:var(--accent);display:flex;align-items:center;gap:8px}
 .hero-card-status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 1.5s infinite}
-.hero-arrow{width:40px;height:40px;border-radius:50%;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;color:var(--accent);transition:all .2s}
-.hero-main-card:hover .hero-arrow{background:var(--accent);color:#0f0f0f}
+.hero-arrow{width:40px;height:40px;border-radius:50%;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;color:var(--accent);transition:all .2s;flex-shrink:0}
+.hero-card-row:hover .hero-arrow{background:var(--accent);color:#0f0f0f}
 .hero-card-mini{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .mini-info{padding:12px;background:rgba(255,255,255,.03);border-radius:10px;border:1px solid var(--border)}
 .mini-info .lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .mini-info .val{font-weight:700;font-size:15px;color:var(--text)}
 .mini-info .val.accent{color:var(--accent)}
 .hero-mini-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.hero-mini-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;display:flex;align-items:center;gap:14px;transition:all .2s}
+.hero-mini-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;display:flex;align-items:center;gap:14px;transition:all .2s;cursor:pointer}
 .hero-mini-card:hover{border-color:var(--accent);transform:translateY(-2px)}
 .mini-card-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .mini-card-icon.a{background:var(--accent-soft);color:var(--accent)}
 .mini-card-icon.b{background:var(--accent2-soft);color:var(--accent2)}
 .mini-card-text .t{font-weight:700;font-size:14px}
 .mini-card-text .s{font-size:12px;color:var(--muted)}
-
 .stats-bar{background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .stats-inner{max-width:1200px;margin:0 auto;padding:44px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
 .stat-number{font-size:44px;font-weight:700;line-height:1}
 .stat-number.accent{color:var(--accent)}
 .stat-number.accent2{color:var(--accent2)}
 .stat-label{color:var(--muted);font-size:13px;margin-top:8px;letter-spacing:.05em}
-
 .section{max-width:1200px;margin:0 auto;padding:90px 32px}
 .section-alt{background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);max-width:100%;padding:90px 0}
 .section-alt .container{max-width:1200px;margin:0 auto;padding:0 32px}
@@ -169,21 +168,22 @@ textarea.form-input{resize:vertical}
   .hero-inner,.why-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
   .stats-inner{grid-template-columns:repeat(2,1fr)}
   .hero-mini-cards{grid-template-columns:1fr 1fr}
+  .nav-links .nav-link{display:none}
 }
 @media(max-width:640px){
-  .nav-links .nav-link:not(.nav-btn){display:none}
   .container,.hero-inner,.section,.stats-inner{padding-left:20px;padding-right:20px}
   .section-alt .container{padding:0 20px}
   .form-row,.hero-features{grid-template-columns:1fr}
   .hero-mini-cards{grid-template-columns:1fr}
   .stat-number{font-size:34px}
   .hero-trust{gap:16px}
+  .lang-switch{margin-right:0}
 }
 </style>
 </head>
 <body>
 
-<!-- NAVIGATION -->
+<!-- NAVIGATION with Language Switcher -->
 <nav class="navbar">
   <div class="nav-container">
     <div class="nav-logo">
@@ -193,85 +193,83 @@ textarea.form-input{resize:vertical}
       <span>Transpoter</span>
     </div>
     <div class="nav-links">
-      <a href="#home" class="nav-link">Home</a>
-      <a href="#services" class="nav-link">Services</a>
-      <a href="#why" class="nav-link">Why Us</a>
-      <a href="#coverage" class="nav-link">Coverage</a>
-      <a href="tel:15901403759" class="nav-btn">Call Now</a>
+      <a href="#home" class="nav-link" data-en="Home" data-de="Start">Home</a>
+      <a href="#services" class="nav-link" data-en="Services" data-de="Leistungen">Services</a>
+      <a href="#why" class="nav-link" data-en="Why Us" data-de="Warum wir">Why Us</a>
+      <a href="#coverage" class="nav-link" data-en="Coverage" data-de="Gebiet">Coverage</a>
+      
+      <!-- Language Switcher -->
+      <div class="lang-switch">
+        <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
+        <button class="lang-btn" onclick="setLanguage('de')">DE</button>
+      </div>
+      
+      <a href="tel:15901403759" class="nav-btn" data-en="Call Now" data-de="Jetzt anrufen">Call Now</a>
     </div>
   </div>
 </nav>
 
-<!-- HERO - EXPANDED VERSION -->
+<!-- HERO -->
 <section id="home" class="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid-lines"></div>
   <div class="hero-inner">
-    
-    <!-- ===== LEFT SIDE - EXPANDED ===== -->
     <div class="hero-left">
-      <div class="hero-tag"><div class="hero-dot"></div><span>Local Truck Transport · Berlin</span></div>
-      <h1>Fast, affordable, and reliable <span class="yellow">local truck transport</span> for homes, offices, and businesses.</h1>
-      <p class="hero-subtitle">From home moves and office relocations to furniture transport and small cargo deliveries, we help you move and deliver with ease across Berlin and beyond.</p>
+      <div class="hero-tag"><div class="hero-dot"></div><span data-en="Local Truck Transport · Berlin" data-de="Lokaler Lkw-Transport · Berlin">Local Truck Transport · Berlin</span></div>
+      <h1 data-en="Fast, affordable, and reliable <span class='yellow'>local truck transport</span> for homes, offices, and businesses."
+          data-de="Schneller, günstiger und zuverlässiger <span class='yellow'>lokaler Lkw-Transport</span> für Haushalte, Büros und Unternehmen.">
+        Fast, affordable, and reliable <span class="yellow">local truck transport</span> for homes, offices, and businesses.
+      </h1>
+      <p class="hero-subtitle" data-en="From home moves and office relocations to furniture transport and small cargo deliveries, we help you move and deliver with ease across Berlin and beyond."
+         data-de="Von Wohnungsumzügen und Büroverlagerungen bis hin zu Möbeltransporten und kleinen Lieferungen – wir helfen Ihnen, einfach und bequem in ganz Berlin und darüber hinaus zu transportieren.">
+        From home moves and office relocations to furniture transport and small cargo deliveries, we help you move and deliver with ease across Berlin and beyond.
+      </p>
       
-      <!-- Feature grid -->
       <div class="hero-features">
         <div class="hero-feature">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M3 9h6"/></svg>
-          <div><strong>Home & Office</strong><span>Full service moves</span></div>
+          <div><strong data-en="Home & Office" data-de="Haushalt & Büro">Home & Office</strong><span data-en="Full service moves" data-de="Kompletter Service">Full service moves</span></div>
         </div>
         <div class="hero-feature">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-          <div><strong>Furniture</strong><span>Heavy & bulky items</span></div>
+          <div><strong data-en="Furniture" data-de="Möbel">Furniture</strong><span data-en="Heavy & bulky items" data-de="Schwere & sperrige Güter">Heavy & bulky items</span></div>
         </div>
         <div class="hero-feature">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-          <div><strong>Cargo Delivery</strong><span>Fast point-to-point</span></div>
+          <div><strong data-en="Cargo Delivery" data-de="Frachtlieferung">Cargo Delivery</strong><span data-en="Fast point-to-point" data-de="Schnell von A nach B">Fast point-to-point</span></div>
         </div>
         <div class="hero-feature">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <div><strong>Fully Insured</strong><span>Protected moves</span></div>
+          <div><strong data-en="Fully Insured" data-de="Vollständig versichert">Fully Insured</strong><span data-en="Protected moves" data-de="Geschützte Transporte">Protected moves</span></div>
         </div>
       </div>
       
       <div class="hero-buttons">
-        <a href="#contact" class="btn-primary">Request a Quote</a>
+        <a href="#contact" class="btn-primary" data-en="Request a Quote" data-de="Angebot anfordern">Request a Quote</a>
         <a href="tel:15901403759" class="btn-secondary">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          Call Now
+          <span data-en="Call Now" data-de="Jetzt anrufen">Call Now</span>
         </a>
       </div>
       
-      <!-- Trust row -->
       <div class="hero-trust">
         <div class="hero-trust-item">
-          <div class="hero-trust-avatars">
-            <div class="avatar"></div>
-            <div class="avatar"></div>
-            <div class="avatar"></div>
-            <div class="avatar"></div>
-          </div>
-          <div class="hero-trust-text"><strong>2,400+</strong> happy customers</div>
+          <div class="hero-trust-avatars"><div class="avatar"></div><div class="avatar"></div><div class="avatar"></div><div class="avatar"></div></div>
+          <div class="hero-trust-text"><strong>2,400+</strong> <span data-en="happy customers" data-de="zufriedene Kunden">happy customers</span></div>
         </div>
         <div class="hero-trust-item">
           <div class="hero-stars">★★★★★</div>
-          <div class="hero-trust-text"><strong>4.9/5</strong> rating</div>
+          <div class="hero-trust-text"><strong>4.9/5</strong> <span data-en="rating" data-de="Bewertung">rating</span></div>
         </div>
       </div>
     </div>
     
-    <!-- ===== RIGHT SIDE - EXPANDED ===== -->
     <div class="hero-right">
-      <!-- Main truck scene card -->
       <div class="hero-main-card">
         <div class="truck-scene" id="truckScene">
-          <div class="truck-sky">
-            <div class="truck-moon"></div>
-          </div>
+          <div class="truck-sky"><div class="truck-moon"></div></div>
           <div class="truck-buildings" id="truckBuildings"></div>
-          <div class="truck-road">
-            <div class="truck-road-line"></div>
-          </div>
+          <div class="truck-road"><div class="truck-road-line"></div></div>
           <svg class="truck-svg" width="200" height="100" viewBox="0 0 200 100">
             <rect x="10" y="25" width="100" height="50" rx="4" fill="#facc15"/>
             <rect x="20" y="35" width="35" height="20" rx="2" fill="#0f0f0f" opacity=".25"/>
@@ -293,10 +291,10 @@ textarea.form-input{resize:vertical}
           </svg>
         </div>
         <div class="hero-card-info">
-         <div class="hero-card-row" style="cursor:pointer;" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+          <div class="hero-card-row" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
             <div>
-              <div class="hero-card-label">Available Today</div>
-              <div class="hero-card-status">Open for bookings</div>
+              <div class="hero-card-label" data-en="Available Today" data-de="Heute verfügbar">Available Today</div>
+              <div class="hero-card-status" data-en="Open for bookings" data-de="Buchungen offen">Open for bookings</div>
             </div>
             <div class="hero-arrow">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
@@ -304,26 +302,25 @@ textarea.form-input{resize:vertical}
           </div>
           <div class="hero-card-mini">
             <div class="mini-info">
-              <div class="lbl">Response Time</div>
-              <div class="val accent">Under 30 min</div>
+              <div class="lbl" data-en="Response Time" data-de="Antwortzeit">Response Time</div>
+              <div class="val accent" data-en="Under 30 min" data-de="Unter 30 Min">Under 30 min</div>
             </div>
             <div class="mini-info">
-              <div class="lbl">Service Area</div>
-              <div class="val">Berlin & 100km</div>
+              <div class="lbl" data-en="Service Area" data-de="Servicegebiet">Service Area</div>
+              <div class="val" data-en="Berlin & 100km" data-de="Berlin & 100km">Berlin & 100km</div>
             </div>
           </div>
         </div>
       </div>
       
-      <!-- Two mini cards below -->
       <div class="hero-mini-cards">
-        <div class="hero-mini-card">
+        <div class="hero-mini-card" onclick="document.getElementById('why').scrollIntoView({behavior:'smooth'})">
           <div class="mini-card-icon a">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
           <div class="mini-card-text">
-            <div class="t">100% Insured</div>
-            <div class="s">Your items protected</div>
+            <div class="t" data-en="100% Insured" data-de="100% Versichert">100% Insured</div>
+            <div class="s" data-en="Your items protected" data-de="Ihre Sachen geschützt">Your items protected</div>
           </div>
         </div>
         <div class="hero-mini-card">
@@ -331,23 +328,22 @@ textarea.form-input{resize:vertical}
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
           <div class="mini-card-text">
-            <div class="t">Mon–Sat: 7–20</div>
-            <div class="s">Extended hours</div>
+            <div class="t" data-en="Mon–Sat: 7–20" data-de="Mo–Sa: 7–20">Mon–Sat: 7–20</div>
+            <div class="s" data-en="Extended hours" data-de="Lange Öffnungszeiten">Extended hours</div>
           </div>
         </div>
       </div>
     </div>
-    
   </div>
 </section>
 
 <!-- STATS BAR -->
 <div class="stats-bar">
   <div class="stats-inner">
-    <div><div class="stat-number accent">5+</div><div class="stat-label">Years Experience</div></div>
-    <div><div class="stat-number accent2">2,400+</div><div class="stat-label">Moves Completed</div></div>
-    <div><div class="stat-number accent">4.9★</div><div class="stat-label">Customer Rating</div></div>
-    <div><div class="stat-number accent2">100%</div><div class="stat-label">Insured & Licensed</div></div>
+    <div><div class="stat-number accent">5+</div><div class="stat-label" data-en="Years Experience" data-de="Jahre Erfahrung">Years Experience</div></div>
+    <div><div class="stat-number accent2">2,400+</div><div class="stat-label" data-en="Moves Completed" data-de="Durchgeführte Umzüge">Moves Completed</div></div>
+    <div><div class="stat-number accent">4.9★</div><div class="stat-label" data-en="Customer Rating" data-de="Kundenbewertung">Customer Rating</div></div>
+    <div><div class="stat-number accent2">100%</div><div class="stat-label" data-en="Insured & Licensed" data-de="Versichert & Lizenziert">Insured & Licensed</div></div>
   </div>
 </div>
 
@@ -355,34 +351,49 @@ textarea.form-input{resize:vertical}
 <section id="services" class="section-alt">
   <div class="container">
     <div class="section-header">
-      <p class="section-label">Our Services</p>
-      <h2 class="section-title">What we can help you move</h2>
+      <p class="section-label" data-en="Our Services" data-de="Unsere Leistungen">Our Services</p>
+      <h2 class="section-title" data-en="What we can help you move" data-de="Was wir für Sie transportieren können">What we can help you move</h2>
     </div>
     <div class="services-grid">
       <div class="service-card">
         <div class="service-icon a"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-        <h3>Home Moves</h3>
-        <p>Full-service house and apartment moving. We handle everything from boxes to bulky furniture with care.</p>
+        <h3 data-en="Home Moves" data-de="Wohnungsumzüge">Home Moves</h3>
+        <p data-en="Full-service house and apartment moving. We handle everything from boxes to bulky furniture with care."
+           data-de="Kompletter Service für Haus- und Wohnungsumzüge. Wir kümmern uns sorgfältig um alles, von Kartons bis zu sperrigen Möbeln.">
+          Full-service house and apartment moving. We handle everything from boxes to bulky furniture with care.
+        </p>
       </div>
       <div class="service-card">
         <div class="service-icon b"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M3 9h6"/></svg></div>
-        <h3>Office Moves</h3>
-        <p>Efficient office relocations with minimal downtime. Desks, equipment, and files transported safely.</p>
+        <h3 data-en="Office Moves" data-de="Büroumzüge">Office Moves</h3>
+        <p data-en="Efficient office relocations with minimal downtime. Desks, equipment, and files transported safely."
+           data-de="Effiziente Büroverlagerungen mit minimalen Ausfallzeiten. Schreibtische, Geräte und Akten werden sicher transportiert.">
+          Efficient office relocations with minimal downtime. Desks, equipment, and files transported safely.
+        </p>
       </div>
       <div class="service-card">
         <div class="service-icon a"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
-        <h3>Furniture Moving</h3>
-        <p>Sofas, beds, wardrobes, pianos — we move heavy and bulky items professionally, without damage.</p>
+        <h3 data-en="Furniture Moving" data-de="Möbeltransport">Furniture Moving</h3>
+        <p data-en="Sofas, beds, wardrobes, pianos — we move heavy and bulky items professionally, without damage."
+           data-de="Sofas, Betten, Kleiderschränke, Klaviere – wir transportieren schwere und sperrige Gegenstände professionell und ohne Beschädigung.">
+          Sofas, beds, wardrobes, pianos — we move heavy and bulky items professionally, without damage.
+        </p>
       </div>
       <div class="service-card">
         <div class="service-icon b"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
-        <h3>Small Cargo Deliveries</h3>
-        <p>Need something picked up or dropped off? Fast point-to-point delivery for boxes and packages.</p>
+        <h3 data-en="Small Cargo Deliveries" data-de="Kleine Frachtlieferungen">Small Cargo Deliveries</h3>
+        <p data-en="Need something picked up or dropped off? Fast point-to-point delivery for boxes and packages."
+           data-de="Müssen Sie etwas abholen oder liefern lassen? Schnelle Lieferung von Kartons und Paketen von A nach B.">
+          Need something picked up or dropped off? Fast point-to-point delivery for boxes and packages.
+        </p>
       </div>
       <div class="service-card">
         <div class="service-icon a"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
-        <h3>Business Logistics</h3>
-        <p>Regular transport for businesses — inventory, supplies, and equipment moved on your schedule.</p>
+        <h3 data-en="Business Logistics" data-de="Geschäftslogistik">Business Logistics</h3>
+        <p data-en="Regular transport for businesses — inventory, supplies, and equipment moved on your schedule."
+           data-de="Regelmäßige Transporte für Unternehmen – Lagerbestand, Material und Geräte nach Ihrem Zeitplan.">
+          Regular transport for businesses — inventory, supplies, and equipment moved on your schedule.
+        </p>
       </div>
     </div>
   </div>
@@ -392,22 +403,29 @@ textarea.form-input{resize:vertical}
 <section id="why" class="section">
   <div class="why-grid container">
     <div>
-      <p class="section-label alt">Why Choose Us</p>
-      <h2 class="section-title" style="margin-bottom:24px;line-height:1.2;">Transport made <span style="color:var(--accent)">simple</span>, reliable, and stress-free.</h2>
-      <p>We know moving can be overwhelming. That's why we focus on clear communication, careful handling, and honest pricing — every single time.</p>
+      <p class="section-label alt" data-en="Why Choose Us" data-de="Warum wir">Why Choose Us</p>
+      <h2 class="section-title" style="margin-bottom:24px;line-height:1.2;"
+          data-en="Transport made <span style='color:var(--accent)'>simple</span>, reliable, and stress-free."
+          data-de="Transport <span style='color:var(--accent)'>einfach</span>, zuverlässig und stressfrei gemacht.">
+        Transport made <span style="color:var(--accent)">simple</span>, reliable, and stress-free.
+      </h2>
+      <p data-en="We know moving can be overwhelming. That's why we focus on clear communication, careful handling, and honest pricing — every single time."
+         data-de="Wir wissen, dass Umzüge überwältigend sein können. Deshalb konzentrieren wir uns auf klare Kommunikation, sorgfältigen Umgang und ehrliche Preise – jedes einzelne Mal.">
+        We know moving can be overwhelming. That's why we focus on clear communication, careful handling, and honest pricing — every single time.
+      </p>
       <div>
-        <div class="check-item"><span><strong>Upfront pricing</strong> — no hidden fees or surprise charges</span></div>
-        <div class="check-item"><span><strong>Experienced team</strong> — trained professionals who handle your items with care</span></div>
-        <div class="check-item"><span><strong>On-time guarantee</strong> — we show up when we say we will</span></div>
-        <div class="check-item"><span><strong>Fully equipped</strong> — proper tools, blankets, and straps for safe transport</span></div>
-        <div class="check-item"><span><strong>Insured service</strong> — your belongings are protected during the move</span></div>
+        <div class="check-item"><span><strong data-en="Upfront pricing" data-de="Transparente Preise">Upfront pricing</strong> — <span data-en="no hidden fees or surprise charges" data-de="keine versteckten Gebühren oder Überraschungen">no hidden fees or surprise charges</span></span></div>
+        <div class="check-item"><span><strong data-en="Experienced team" data-de="Erfahrenes Team">Experienced team</strong> — <span data-en="trained professionals who handle your items with care" data-de="geschulte Profis, die sorgfältig mit Ihren Sachen umgehen">trained professionals who handle your items with care</span></span></div>
+        <div class="check-item"><span><strong data-en="On-time guarantee" data-de="Pünktlichkeitsgarantie">On-time guarantee</strong> — <span data-en="we show up when we say we will" data-de="wir erscheinen, wenn wir es versprechen">we show up when we say we will</span></span></div>
+        <div class="check-item"><span><strong data-en="Fully equipped" data-de="Voll ausgestattet">Fully equipped</strong> — <span data-en="proper tools, blankets, and straps for safe transport" data-de="richtige Werkzeuge, Decken und Gurte für sicheren Transport">proper tools, blankets, and straps for safe transport</span></span></div>
+        <div class="check-item"><span><strong data-en="Insured service" data-de="Versicherter Service">Insured service</strong> — <span data-en="your belongings are protected during the move" data-de="Ihr Hab und Gut ist während des Transports geschützt">your belongings are protected during the move</span></span></div>
       </div>
     </div>
     <div class="why-stats">
-      <div class="why-stat"><div class="num a">5+</div><div class="lbl">Years Experience</div></div>
-      <div class="why-stat"><div class="num b">2,400+</div><div class="lbl">Moves Completed</div></div>
-      <div class="why-stat"><div class="num b">4.9★</div><div class="lbl">Customer Rating</div></div>
-      <div class="why-stat"><div class="num a">100%</div><div class="lbl">Insured & Licensed</div></div>
+      <div class="why-stat"><div class="num a">5+</div><div class="lbl" data-en="Years Experience" data-de="Jahre Erfahrung">Years Experience</div></div>
+      <div class="why-stat"><div class="num b">2,400+</div><div class="lbl" data-en="Moves Completed" data-de="Umzüge abgeschlossen">Moves Completed</div></div>
+      <div class="why-stat"><div class="num b">4.9★</div><div class="lbl" data-en="Customer Rating" data-de="Kundenbewertung">Customer Rating</div></div>
+      <div class="why-stat"><div class="num a">100%</div><div class="lbl" data-en="Insured & Licensed" data-de="Versichert & Lizenziert">Insured & Licensed</div></div>
     </div>
   </div>
 </section>
@@ -416,9 +434,13 @@ textarea.form-input{resize:vertical}
 <section id="coverage" class="section-alt">
   <div class="container">
     <div class="section-header">
-      <p class="section-label">Coverage Area</p>
-      <h2 class="section-title">Where we operate</h2>
-      <p style="color:var(--muted);font-size:16px;margin-top:12px;max-width:500px;margin-left:auto;margin-right:auto;">Serving the greater Berlin area and surrounding regions within 100 km.</p>
+      <p class="section-label" data-en="Coverage Area" data-de="Gebiet">Coverage Area</p>
+      <h2 class="section-title" data-en="Where we operate" data-de="Wo wir tätig sind">Where we operate</h2>
+      <p style="color:var(--muted);font-size:16px;margin-top:12px;max-width:500px;margin-left:auto;margin-right:auto;"
+         data-en="Serving the greater Berlin area and surrounding regions within 100 km."
+         data-de="Bedienung des Großraums Berlin und der umliegenden Regionen innerhalb von 100 km.">
+        Serving the greater Berlin area and surrounding regions within 100 km.
+      </p>
     </div>
     <div class="coverage-grid">
       <div class="coverage-item"><div class="coverage-dot"></div><span>Berlin city</span></div>
@@ -428,9 +450,13 @@ textarea.form-input{resize:vertical}
       <div class="coverage-item"><div class="coverage-dot"></div><span>Marzahn</span></div>
       <div class="coverage-item"><div class="coverage-dot"></div><span>Pankow</span></div>
       <div class="coverage-item"><div class="coverage-dot"></div><span>Charlottenburg</span></div>
-      <div class="coverage-item"><div class="coverage-dot"></div><span>+ more areas</span></div>
+      <div class="coverage-item"><div class="coverage-dot"></div><span data-en="+ more areas" data-de="+ weitere Gebiete">+ more areas</span></div>
     </div>
-    <p style="text-align:center;margin-top:28px;font-size:14px;color:var(--muted);">Not sure if we cover your area? <a href="#contact" style="color:var(--accent);font-weight:600;text-decoration:none;">Contact us</a> and we'll let you know.</p>
+    <p style="text-align:center;margin-top:28px;font-size:14px;color:var(--muted);"
+       data-en="Not sure if we cover your area? <a href='#contact' style='color:var(--accent);font-weight:600;text-decoration:none;'>Contact us</a> and we'll let you know."
+       data-de="Nicht sicher, ob wir Ihr Gebiet abdecken? <a href='#contact' style='color:var(--accent);font-weight:600;text-decoration:none;'>Kontaktieren Sie uns</a> und wir sagen es Ihnen.">
+      Not sure if we cover your area? <a href="#contact" style="color:var(--accent);font-weight:600;text-decoration:none;">Contact us</a> and we'll let you know.
+    </p>
   </div>
 </section>
 
@@ -438,49 +464,57 @@ textarea.form-input{resize:vertical}
 <section id="contact" class="section">
   <div class="contact-grid container">
     <div>
-      <p class="section-label alt">Get In Touch</p>
-      <h2 class="section-title" style="margin-bottom:20px;line-height:1.2;">Ready to book your <span style="color:var(--accent)">transport</span>?</h2>
-      <p style="color:var(--muted);font-size:16px;line-height:1.7;margin-bottom:32px;">Call us directly or fill out the form for a free quote. We respond fast — usually within 30 minutes during business hours.</p>
+      <p class="section-label alt" data-en="Get In Touch" data-de="Kontakt aufnehmen">Get In Touch</p>
+      <h2 class="section-title" style="margin-bottom:20px;line-height:1.2;"
+          data-en="Ready to book your <span style='color:var(--accent)'>transport</span>?"
+          data-de="Bereit, Ihren <span style='color:var(--accent)'>Transport</span> zu buchen?">
+        Ready to book your <span style="color:var(--accent)">transport</span>?
+      </h2>
+      <p style="color:var(--muted);font-size:16px;line-height:1.7;margin-bottom:32px;"
+         data-en="Call us directly or fill out the form for a free quote. We respond fast — usually within 30 minutes during business hours."
+         data-de="Rufen Sie uns direkt an oder füllen Sie das Formular für ein kostenloses Angebot aus. Wir antworten schnell – normalerweise innerhalb von 30 Minuten während der Geschäftszeiten.">
+        Call us directly or fill out the form for a free quote. We respond fast — usually within 30 minutes during business hours.
+      </p>
       <a href="tel:15901403759" class="contact-info-card">
         <div class="contact-icon a"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-        <div><div class="lbl">Call us</div><div class="val">15901403759</div></div>
+        <div><div class="lbl" data-en="Call us" data-de="Rufen Sie uns an">Call us</div><div class="val">15901403759</div></div>
       </a>
       <div class="contact-info-card">
         <div class="contact-icon b"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-        <div><div class="lbl">Business Hours</div><div style="font-weight:600;font-size:15px;">Mon–Sat: 7:00 – 20:00</div></div>
+        <div><div class="lbl" data-en="Business Hours" data-de="Geschäftszeiten">Business Hours</div><div style="font-weight:600;font-size:15px;">Mon–Sat: 7:00 – 20:00</div></div>
       </div>
       <div class="contact-info-card">
         <div class="contact-icon a"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-        <div><div class="lbl">Based in</div><div style="font-weight:600;font-size:15px;">Berlin, Germany</div></div>
+        <div><div class="lbl" data-en="Based in" data-de="Sitz in">Based in</div><div style="font-weight:600;font-size:15px;">Berlin, Germany</div></div>
       </div>
     </div>
     <div class="contact-form">
-      <h3>Request a Free Quote</h3>
-      <p class="sub">Tell us about your move — we'll get back to you quickly.</p>
+      <h3 data-en="Request a Free Quote" data-de="Kostenloses Angebot anfordern">Request a Free Quote</h3>
+      <p class="sub" data-en="Tell us about your move — we'll get back to you quickly." data-de="Erzählen Sie uns von Ihrem Umzug – wir melden uns schnell bei Ihnen.">Tell us about your move — we'll get back to you quickly.</p>
       <form onsubmit="submitQuote(event)">
         <div class="form-row">
-          <div class="form-group"><label>Your Name</label><input type="text" required class="form-input" placeholder="John Smith"></div>
-          <div class="form-group"><label>Phone Number</label><input type="tel" required class="form-input" placeholder="Your phone"></div>
+          <div class="form-group"><label data-en="Your Name" data-de="Ihr Name">Your Name</label><input type="text" required class="form-input" placeholder="John Smith"></div>
+          <div class="form-group"><label data-en="Phone Number" data-de="Telefonnummer">Phone Number</label><input type="tel" required class="form-input" placeholder="Your phone"></div>
         </div>
-        <div class="form-group"><label>Email Address</label><input type="email" class="form-input" placeholder="you@email.com"></div>
+        <div class="form-group"><label data-en="Email Address" data-de="E-Mail-Adresse">Email Address</label><input type="email" class="form-input" placeholder="you@email.com"></div>
         <div class="form-group">
-          <label>Service Needed</label>
+          <label data-en="Service Needed" data-de="Benötigter Service">Service Needed</label>
           <select required class="form-input" style="cursor:pointer;">
-            <option value="">Select a service...</option>
-            <option>Home Move</option>
-            <option>Office Move</option>
-            <option>Furniture Moving</option>
-            <option>Small Cargo Delivery</option>
-            <option>Business Logistics</option>
-            <option>Not sure / Other</option>
+            <option value="" data-en="Select a service..." data-de="Service auswählen...">Select a service...</option>
+            <option data-en="Home Move" data-de="Wohnungsumzug">Home Move</option>
+            <option data-en="Office Move" data-de="Büroumzug">Office Move</option>
+            <option data-en="Furniture Moving" data-de="Möbeltransport">Furniture Moving</option>
+            <option data-en="Small Cargo Delivery" data-de="Kleine Frachtlieferung">Small Cargo Delivery</option>
+            <option data-en="Business Logistics" data-de="Geschäftslogistik">Business Logistics</option>
+            <option data-en="Not sure / Other" data-de="Nicht sicher / Sonstiges">Not sure / Other</option>
           </select>
         </div>
         <div class="form-row">
-          <div class="form-group"><label>Pickup Location</label><input type="text" class="form-input" placeholder="Street, City"></div>
-          <div class="form-group"><label>Drop-off Location</label><input type="text" class="form-input" placeholder="Street, City"></div>
+          <div class="form-group"><label data-en="Pickup Location" data-de="Abholort">Pickup Location</label><input type="text" class="form-input" placeholder="Street, City"></div>
+          <div class="form-group"><label data-en="Drop-off Location" data-de="Lieferort">Drop-off Location</label><input type="text" class="form-input" placeholder="Street, City"></div>
         </div>
-        <div class="form-group"><label>Tell us more (optional)</label><textarea rows="3" class="form-input" placeholder="Number of items, stairs, special items, preferred date..."></textarea></div>
-        <button type="submit" class="submit-btn">Request My Free Quote</button>
+        <div class="form-group"><label data-en="Tell us more (optional)" data-de="Erzählen Sie uns mehr (optional)">Tell us more (optional)</label><textarea rows="3" class="form-input" placeholder="Number of items, stairs, special items, preferred date..."></textarea></div>
+        <button type="submit" class="submit-btn" data-en="Request My Free Quote" data-de="Mein kostenloses Angebot anfordern">Request My Free Quote</button>
         <div id="formMessage" class="form-msg"></div>
       </form>
     </div>
@@ -497,12 +531,12 @@ textarea.form-input{resize:vertical}
         </div>
         <span>Transpoter</span>
       </div>
-      <div class="footer-tagline">Fast, affordable, reliable local truck transport.</div>
+      <div class="footer-tagline" data-en="Fast, affordable, reliable local truck transport." data-de="Schneller, günstiger, zuverlässiger lokaler Lkw-Transport.">Fast, affordable, reliable local truck transport.</div>
     </div>
     <div class="footer-bottom">
-      <div>© 2026 Transpoter. All rights reserved.</div>
+      <div>© 2026 Transpoter. <span data-en="All rights reserved." data-de="Alle Rechte vorbehalten.">All rights reserved.</span></div>
       <div class="footer-links">
-        <a href="tel:+49 15901403759">+49 15901403759</a>
+        <a href="tel:+49 15901403759">+4915901403759</a>
         <a href="https://github.com/shandavid194-crypto/Transpoter" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
@@ -510,7 +544,66 @@ textarea.form-input{resize:vertical}
 </footer>
 
 <script>
-// Generate stars and buildings for truck scene
+// ===== LANGUAGE SWITCHER =====
+var translations = {
+  en: {}, de: {}
+};
+
+// Collect all translations from data attributes
+function collectTranslations() {
+  document.querySelectorAll('[data-en]').forEach(function(el) {
+    var key = el.getAttribute('data-en');
+    translations.en[key] = el.getAttribute('data-en');
+    translations.de[key] = el.getAttribute('data-de');
+  });
+}
+
+function setLanguage(lang) {
+  // Update button states
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.classList.remove('active');
+    if(btn.textContent.trim() === lang.toUpperCase()) {
+      btn.classList.add('active');
+    }
+  });
+  
+  // Update all translatable elements
+  document.querySelectorAll('[data-en]').forEach(function(el) {
+    var content = el.getAttribute('data-' + lang);
+    if(content) {
+      if(el.tagName === 'OPTION' || el.tagName === 'INPUT') {
+        // For form elements, use value/text appropriately
+        if(el.tagName === 'OPTION') {
+          el.textContent = content;
+        }
+      } else {
+        el.innerHTML = content;
+      }
+    }
+  });
+  
+  // Update HTML lang attribute
+  document.documentElement.lang = lang;
+  
+  // Save preference
+  localStorage.setItem('transpoter-language', lang);
+}
+
+// Load saved language on page load
+function loadLanguage() {
+  var saved = localStorage.getItem('transpoter-language');
+  if(saved) {
+    setLanguage(saved);
+  } else {
+    // Auto-detect: if browser is German, default to DE
+    var browserLang = navigator.language || navigator.userLanguage;
+    if(browserLang && browserLang.toLowerCase().startsWith('de')) {
+      setLanguage('de');
+    }
+  }
+}
+
+// ===== Scene animations =====
 (function(){
   var sky = document.querySelector('.truck-sky');
   if(sky){
@@ -535,13 +628,22 @@ textarea.form-input{resize:vertical}
   }
 })();
 
+// ===== Form submission =====
 function submitQuote(e){
   e.preventDefault();
   var msg=document.getElementById('formMessage');
-  msg.innerHTML='<span style="color:var(--accent);">✓ Thanks! We\'ll contact you within 30 minutes.</span>';
+  var lang = localStorage.getItem('transpoter-language') || 'en';
+  var thanks = lang === 'de' 
+    ? '<span style="color:var(--accent);">✓ Danke! Wir melden uns innerhalb von 30 Minuten bei Ihnen.</span>'
+    : '<span style="color:var(--accent);">✓ Thanks! We\'ll contact you within 30 minutes.</span>';
+  msg.innerHTML = thanks;
   e.target.reset();
   setTimeout(function(){msg.innerHTML='';},6000);
 }
+
+// Initialize
+collectTranslations();
+loadLanguage();
 </script>
 </body>
 </html>
