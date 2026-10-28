@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transpoter — Local Truck Transport</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{--bg:#f6fbf9;--card:#ffffff;--text:#0f172a;--muted:#64748b;--accent:#0d9488;--accent-soft:rgba(13,148,136,.12);--accent2:#c4693d;--accent2-soft:rgba(196,105,61,.12);--border:rgba(15,23,42,.08)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+.container{max-width:1100px;margin:0 auto;padding:0 32px}
+.navbar{position:sticky;top:0;z-index:50;background:rgba(246,251,249,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.nav-container{max-width:1100px;margin:0 auto;padding:18px 32px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.logo-icon{width:40px;height:40px;border-radius:10px;background:var(--accent);display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+.nav-logo span{font-weight:700;font-size:20px;letter-spacing:-.02em}
+.nav-links{display:flex;gap:28px;align-items:center;font-size:15px;font-weight:500}
+.nav-link{color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-link:hover{color:var(--accent)}
+.nav-btn{padding:10px 22px;border-radius:8px;background:var(--accent2);color:white;text-decoration:none;font-weight:600;font-size:14px;transition:all .2s}
+.nav-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,105,61,.3)}
+.hero{position:relative;overflow:hidden}
+.hero-bg{position:absolute;top:0;right:0;width:50%;height:100%;background:linear-gradient(135deg,var(--accent-soft),transparent 70%);pointer-events:none}
+.hero-inner{max-width:1100px;margin:0 auto;padding:90px 32px 100px;display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center;position:relative}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:var(--accent-soft);border-radius:20px;margin-bottom:24px}
+.hero-tag span{font-size:13px;font-weight:600;color:var(--accent)}
+.hero-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.hero h1{font-size:clamp(36px,4.5vw,52px);font-weight:700;line-height:1.15;letter-spacing:-.02em;margin-bottom:20px}
+.hero p{color:var(--muted);font-size:17px;line-height:1.7;margin-bottom:36px;max-width:520px}
+.hero-buttons{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:32px}
+.btn-primary{padding:14px 30px;border-radius:10px;background:var(--accent2);color:white;text-decoration:none;font-weight:700;font-size:15px;display:inline-block;transition:all .2s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,105,61,.3)}
+.btn-secondary{padding:14px 30px;border-radius:10px;background:transparent;color:var(--text);text-decoration:none;font-weight:600;font-size:15px;border:1.5px solid var(--border);display:inline-flex;align-items:center;gap:8px;transition:all .2s}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+.hero-checks{display:flex;gap:32px;flex-wrap:wrap}
+.hero-checks div{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}
+.hero-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px;box-shadow:0 20px 60px rgba(15,23,42,.08)}
+.hero-truck{display:flex;align-items:center;justify-content:center;width:100%;height:180px;background:linear-gradient(135deg,var(--accent-soft),var(--accent2-soft));border-radius:14px;margin-bottom:24px}
+.hero-available{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:14px}
+.hero-available .label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.hero-available .status{font-weight:700;font-size:16px;color:var(--accent)}
+.hero-response{font-size:13px;color:var(--muted)}
+.hero-response strong{color:var(--text)}
+.stats-bar{background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.stats-inner{max-width:1100px;margin:0 auto;padding:40px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.stat-number{font-size:42px;font-weight:700;line-height:1}
+.stat-number.accent{color:var(--accent)}
+.stat-number.accent2{color:var(--accent2)}
+.stat-label{color:var(--muted);font-size:13px;margin-top:8px;letter-spacing:.05em}
+.section{max-width:1100px;margin:0 auto;padding:90px 32px}
+.section-alt{background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);max-width:100%;padding:90px 0}
+.section-alt .container{max-width:1100px;margin:0 auto;padding:0 32px}
+.section-header{text-align:center;margin-bottom:56px}
+.section-label{font-size:13px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.section-label.alt{color:var(--accent2)}
+.section-title{font-size:clamp(30px,3.5vw,40px);font-weight:700;letter-spacing:-.02em}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.service-card{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:28px;transition:all .3s}
+.service-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(13,148,136,.1);border-color:var(--accent)}
+.service-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.service-icon.a{background:var(--accent-soft);color:var(--accent)}
+.service-icon.b{background:var(--accent2-soft);color:var(--accent2)}
+.service-card h3{font-size:18px;font-weight:700;margin-bottom:8px}
+.service-card p{color:var(--muted);font-size:14px;line-height:1.6}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.why-grid p{color:var(--muted);font-size:16px;line-height:1.7;margin-bottom:28px}
+.check-item{display:flex;align-items:flex-start;font-size:15px;margin-bottom:16px}
+.check-item::before{content:"✓";color:var(--accent);font-weight:700;margin-right:10px;flex-shrink:0}
+.check-item strong{color:var(--text)}
+.why-stats{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.why-stat{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;text-align:center}
+.why-stat .num{font-size:42px;font-weight:700;line-height:1;margin-bottom:8px}
+.why-stat .num.a{color:var(--accent)}
+.why-stat .num.b{color:var(--accent2)}
+.why-stat .lbl{font-size:14px;color:var(--muted)}
+.coverage-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;max-width:800px;margin:0 auto}
+.coverage-item{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg);border-radius:10px;border:1px solid var(--border)}
+.coverage-dot{width:10px;height:10px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.coverage-item span{font-weight:600;font-size:15px}
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:50px;align-items:start}
+.contact-info-card{display:flex;align-items:center;gap:16px;padding:18px;background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:20px;text-decoration:none;color:var(--text);transition:border-color .2s}
+.contact-info-card:hover{border-color:var(--accent)}
+.contact-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-icon.a{background:var(--accent-soft);color:var(--accent)}
+.contact-icon.b{background:var(--accent2-soft);color:var(--accent2)}
+.contact-info-card .lbl{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.contact-info-card .val{font-weight:700;font-size:18px}
+.contact-form{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:36px}
+.contact-form h3{font-size:22px;font-weight:700;margin-bottom:6px}
+.contact-form .sub{color:var(--muted);font-size:14px;margin-bottom:24px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.form-input{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text);font-size:14px;font-family:inherit;transition:all .2s}
+.form-input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+textarea.form-input{resize:vertical}
+.submit-btn{width:100%;padding:14px;border:none;border-radius:10px;background:var(--accent2);color:white;font-weight:700;font-size:15px;font-family:inherit;cursor:pointer;transition:all .2s;margin-top:6px}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,105,61,.3)}
+.form-msg{text-align:center;font-size:14px;min-height:20px;margin-top:12px}
+.footer{background:#0f172a;color:#cbd5e1;padding:40px 32px 28px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;padding-bottom:24px;border-bottom:1px solid rgba(203,213,225,.1)}
+.footer-brand{display:flex;align-items:center;gap:10px}
+.footer-logo{width:36px;height:36px;border-radius:9px;background:var(--accent);display:flex;align-items:center;justify-content:center}
+.footer-brand span{font-weight:700;font-size:18px;color:white}
+.footer-tagline{font-size:14px;color:#94a3b8}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding-top:20px;font-size:13px;color:#94a3b8}
+.footer-links{display:flex;gap:24px}
+.footer-links a{color:#94a3b8;text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:white}
+@media(max-width:900px){
+  .hero-inner,.why-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:640px){
+  .nav-links .nav-link:not(.nav-btn){display:none}
+  .container,.hero-inner,.section,.stats-inner{padding-left:20px;padding-right:20px}
+  .section-alt .container{padding:0 20px}
+  .form-row{grid-template-columns:1fr}
+  .hero-checks{gap:16px}
+  .stat-number{font-size:34px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="nav-logo">
+      <div class="logo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      </div>
+      <span>Transpoter</span>
+    </div>
+    <div class="nav-links">
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#why" class="nav-link">Why Us</a>
+      <a href="#coverage" class="nav-link">Coverage</a>
+      <a href="#contact" class="nav-btn">Call Now</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag"><div class="hero-dot"></div><span>Local Truck Transport</span></div>
+      <h1>Fast, affordable, and reliable local truck transport for homes, offices, and businesses.</h1>
+      <p>From home moves and office relocations to furniture transport and small cargo deliveries, we help you move and deliver with ease.</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn-primary">Request a Quote</a>
+        <a href="tel:+495111234567" class="btn-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Call Now
+        </a>
+      </div>
+      <div class="hero-checks">
+        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Free quotes</div>
+        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Same-day service</div>
+        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Insured & reliable</div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-truck">
+        <svg width="140" height="100" viewBox="0 0 140 100" fill="none">
+          <rect x="10" y="25" width="70" height="45" rx="4" fill="var(--accent)" opacity=".9"/>
+          <rect x="18" y="33" width="22" height="14" rx="2" fill="white" opacity=".3"/>
+          <rect x="80" y="40" width="45" height="30" rx="3" fill="var(--accent2)" opacity=".9"/>
+          <circle cx="30" cy="75" r="10" fill="#334155"/>
+          <circle cx="30" cy="75" r="5" fill="#94a3b8"/>
+          <circle cx="100" cy="75" r="10" fill="#334155"/>
+          <circle cx="100" cy="75" r="5" fill="#94a3b8"/>
+          <rect x="85" y="45" width="12" height="8" rx="1" fill="white" opacity=".4"/>
+        </svg>
+      </div>
+      <div class="hero-available">
+        <div><div class="label">Available Today</div><div class="status">Open for bookings</div></div>
+        <div style="width:44px;height:44px;border-radius:50%;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;color:var(--accent);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </div>
+      </div>
+      <div class="hero-response">Typical response: <strong>under 30 minutes</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div><div class="stat-number accent">5+</div><div class="stat-label">Years Experience</div></div>
+    <div><div class="stat-number accent2">2,400+</div><div class="stat-label">Moves Completed</div></div>
+    <div><div class="stat-number accent">4.9★</div><div class="stat-label">Customer Rating</div></div>
+    <div><div class="stat-number accent2">100%</div><div class="stat-label">Insured & Licensed</div></div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services" class="section-alt">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">Our Services</p>
+      <h2 class="section-title">What we can help you move</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon a"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <h3>Home Moves</h3>
+        <p>Full-service house and apartment moving. We handle everything from boxes to bulky furniture with care.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon b"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M3 9h6"/></svg></div>
+        <h3>Office Moves</h3>
+        <p>Efficient office relocations with minimal downtime. Desks, equipment, and files transported safely.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon a"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+        <h3>Furniture Moving</h3>
+        <p>Sofas, beds, wardrobes, pianos — we move heavy and bulky items professionally, without damage.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon b"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+        <h3>Small Cargo Deliveries</h3>
+        <p>Need something picked up or dropped off? Fast point-to-point delivery for boxes and packages.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon a"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+        <h3>Business Logistics</h3>
+        <p>Regular transport for businesses — inventory, supplies, and equipment moved on your schedule.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section id="why" class="section">
+  <div class="why-grid container">
+    <div>
+      <p class="section-label alt">Why Choose Us</p>
+      <h2 class="section-title" style="margin-bottom:24px;line-height:1.2;">Transport made simple, reliable, and stress-free.</h2>
+      <p>We know moving can be overwhelming. That's why we focus on clear communication, careful handling, and honest pricing — every single time.</p>
+      <div>
+        <div class="check-item"><span><strong>Upfront pricing</strong> — no hidden fees or surprise charges</span></div>
+        <div class="check-item"><span><strong>Experienced team</strong> — trained professionals who handle your items with care</span></div>
+        <div class="check-item"><span><strong>On-time guarantee</strong> — we show up when we say we will</span></div>
+        <div class="check-item"><span><strong>Fully equipped</strong> — proper tools, blankets, and straps for safe transport</span></div>
+        <div class="check-item"><span><strong>Insured service</strong> — your belongings are protected during the move</span></div>
+      </div>
+    </div>
+    <div class="why-stats">
+      <div class="why-stat"><div class="num a">5+</div><div class="lbl">Years Experience</div></div>
+      <div class="why-stat"><div class="num b">2,400+</div><div class="lbl">Moves Completed</div></div>
+      <div class="why-stat"><div class="num b">4.9★</div><div class="lbl">Customer Rating</div></div>
+      <div class="why-stat"><div class="num a">100%</div><div class="lbl">Insured & Licensed</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- COVERAGE AREA -->
+<section id="coverage" class="section-alt">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">Coverage Area</p>
+      <h2 class="section-title">Where we operate</h2>
+      <p style="color:var(--muted);font-size:16px;margin-top:12px;max-width:500px;margin-left:auto;margin-right:auto;">Serving the greater Hanover area and surrounding regions within 100 km.</p>
+    </div>
+    <div class="coverage-grid">
+      <div class="coverage-item"><div class="coverage-dot"></div><span>Hanover city</span></div>
+      <div class="coverage-item"><div class="coverage-dot"></div><span>Laatzen</span></div>
+      <div class="coverage-item"><div class="coverage-dot"></div><span>Seelze</span></div>
+      <div class="coverage-item"><div class="coverage-dot"></div><span>Garbsen</span></div>
+      <div class="coverage-item"><div class="coverage-dot"></div><span>Langenhagen</span></div>
+      <div class="coverage-item"><div class="coverage-dot"></div><span>Barsinghausen</span></div>
+      <div class="coverage-item"><div class="coverage-dot"></div><span>Wunstorf</span></div>
+      <div class="coverage-item"><div class="coverage-dot"></div><span>+ more areas</span></div>
+    </div>
+    <p style="text-align:center;margin-top:28px;font-size:14px;color:var(--muted);">Not sure if we cover your area? <a href="#contact" style="color:var(--accent);font-weight:600;text-decoration:none;">Contact us</a> and we'll let you know.</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="contact-grid container">
+    <div>
+      <p class="section-label alt">Get In Touch</p>
+      <h2 class="section-title" style="margin-bottom:20px;line-height:1.2;">Ready to book your transport?</h2>
+      <p style="color:var(--muted);font-size:16px;line-height:1.7;margin-bottom:32px;">Call us directly or fill out the form for a free quote. We respond fast — usually within 30 minutes during business hours.</p>
+      <a href="tel:+495111234567" class="contact-info-card">
+        <div class="contact-icon a"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <div><div class="lbl">Call us</div><div class="val">+49 511 123 4567</div></div>
+      </a>
+      <div class="contact-info-card">
+        <div class="contact-icon b"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div><div class="lbl">Business Hours</div><div style="font-weight:600;font-size:15px;">Mon–Sat: 7:00 – 20:00</div></div>
+      </div>
+      <div class="contact-info-card">
+        <div class="contact-icon a"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div><div class="lbl">Based in</div><div style="font-weight:600;font-size:15px;">Hanover, Germany</div></div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <h3>Request a Free Quote</h3>
+      <p class="sub">Tell us about your move — we'll get back to you quickly.</p>
+      <form onsubmit="submitQuote(event)">
+        <div class="form-row">
+          <div class="form-group"><label>Your Name</label><input type="text" required class="form-input" placeholder="John Smith"></div>
+          <div class="form-group"><label>Phone Number</label><input type="tel" required class="form-input" placeholder="+49 ..."></div>
+        </div>
+        <div class="form-group"><label>Email Address</label><input type="email" class="form-input" placeholder="you@email.com"></div>
+        <div class="form-group">
+          <label>Service Needed</label>
+          <select required class="form-input" style="cursor:pointer;">
+            <option value="">Select a service...</option>
+            <option>Home Move</option>
+            <option>Office Move</option>
+            <option>Furniture Moving</option>
+            <option>Small Cargo Delivery</option>
+            <option>Business Logistics</option>
+            <option>Not sure / Other</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Pickup Location</label><input type="text" class="form-input" placeholder="Street, City"></div>
+          <div class="form-group"><label>Drop-off Location</label><input type="text" class="form-input" placeholder="Street, City"></div>
+        </div>
+        <div class="form-group"><label>Tell us more (optional)</label><textarea rows="3" class="form-input" placeholder="Number of items, stairs, special items, preferred date..."></textarea></div>
+        <button type="submit" class="submit-btn">Request My Free Quote</button>
+        <div id="formMessage" class="form-msg"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <span>Transpoter</span>
+      </div>
+      <div class="footer-tagline">Fast, affordable, reliable local truck transport.</div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Transpoter. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="tel:+495111234567">+49 511 123 4567</a>
+        <a href="https://github.com/shandavid194-crypto/Transpoter" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function submitQuote(e){
+  e.preventDefault();
+  var msg=document.getElementById('formMessage');
+  msg.innerHTML='<span style="color:var(--accent);">✓ Thanks! We\'ll contact you within 30 minutes.</span>';
+  e.target.reset();
+  setTimeout(function(){msg.innerHTML='';},6000);
+}
+</script>
+</body>
+</html>
