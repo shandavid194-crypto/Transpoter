@@ -67,23 +67,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);lin
 .service-icon.b{background:var(--accent2-soft);color:var(--accent2)}
 .service-card h3{font-size:18px;font-weight:700;margin-bottom:8px}
 .service-card p{color:var(--muted);font-size:14px;line-height:1.6}
-
-/* ===== VIDEO SECTION ===== */
-.video-section{background:linear-gradient(180deg,var(--bg) 0%,#141414 50%,var(--bg) 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.video-inner{max-width:1100px;margin:0 auto;padding:90px 32px;text-align:center}
-.video-label{font-size:13px;font-weight:600;color:var(--accent2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
-.video-title{font-size:clamp(30px,3.5vw,40px);font-weight:700;letter-spacing:-.02em;margin-bottom:14px}
-.video-subtitle{color:var(--muted);font-size:16px;margin-bottom:40px;max-width:520px;margin-left:auto;margin-right:auto}
-.video-wrapper{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:16px;border:2px solid rgba(250,204,21,.25);box-shadow:0 20px 60px rgba(0,0,0,.5);max-width:900px;margin:0 auto}
-.video-wrapper iframe{position:absolute;top:0;left:0;width:100%;height:100%}
-.video-placeholder{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(250,204,21,.08),rgba(249,115,22,.06));display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .3s}
-.video-placeholder:hover{background:linear-gradient(135deg,rgba(250,204,21,.15),rgba(249,115,22,.1))}
-.play-btn{width:80px;height:80px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;margin-bottom:20px;box-shadow:0 0 40px rgba(250,204,21,.4);transition:transform .3s}
-.video-placeholder:hover .play-btn{transform:scale(1.1)}
-.play-btn svg{margin-left:4px}
-.video-placeholder-text{font-size:18px;font-weight:600;color:var(--text)}
-.video-placeholder-sub{font-size:13px;color:var(--muted);margin-top:6px}
-
 .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
 .why-grid p{color:var(--muted);font-size:16px;line-height:1.7;margin-bottom:28px}
 .check-item{display:flex;align-items:flex-start;font-size:15px;margin-bottom:16px}
@@ -136,12 +119,11 @@ textarea.form-input{resize:vertical}
 }
 @media(max-width:640px){
   .nav-links .nav-link:not(.nav-btn){display:none}
-  .container,.hero-inner,.section,.stats-inner,.video-inner{padding-left:20px;padding-right:20px}
+  .container,.hero-inner,.section,.stats-inner{padding-left:20px;padding-right:20px}
   .section-alt .container{padding:0 20px}
   .form-row{grid-template-columns:1fr}
   .hero-checks{gap:16px}
   .stat-number{font-size:34px}
-  .play-btn{width:60px;height:60px}
 }
 </style>
 </head>
@@ -158,15 +140,15 @@ textarea.form-input{resize:vertical}
     </div>
     <div class="nav-links">
       <a href="#home" class="nav-link">Home</a>
-      <a href="#video" class="nav-link">Video</a>
       <a href="#services" class="nav-link">Services</a>
       <a href="#why" class="nav-link">Why Us</a>
+      <a href="#coverage" class="nav-link">Coverage</a>
       <a href="#contact" class="nav-btn">Call Now</a>
     </div>
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- HERO / HOME -->
 <section id="home" class="hero">
   <div class="hero-bg"></div>
   <div class="hero-inner">
@@ -211,7 +193,7 @@ textarea.form-input{resize:vertical}
   </div>
 </section>
 
-<!-- STATS -->
+<!-- STATS BAR -->
 <div class="stats-bar">
   <div class="stats-inner">
     <div><div class="stat-number accent">5+</div><div class="stat-label">Years Experience</div></div>
@@ -220,28 +202,6 @@ textarea.form-input{resize:vertical}
     <div><div class="stat-number accent2">100%</div><div class="stat-label">Insured & Licensed</div></div>
   </div>
 </div>
-
-<!-- VIDEO SECTION -->
-<section id="video" class="video-section">
-  <div class="video-inner">
-    <p class="video-label">See Us in Action</p>
-    <h2 class="video-title">Watch how we make moving <span style="color:var(--accent)">easy</span></h2>
-    <p class="video-subtitle">See our professional team in action — careful handling, on-time delivery, and happy customers.</p>
-    <div class="video-wrapper">
-      <!-- Replace this YouTube URL with your own video -->
-      <iframe 
-        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-        title="Transpoter - Our Transport Services"
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-      </iframe>
-    </div>
-    <p style="font-size:13px;color:var(--muted);margin-top:16px;">
-      <em>💡 Tip: Replace the YouTube video ID with your own — just change the code after <code style="background:rgba(255,255,255,.1);padding:2px 6px;border-radius:4px;">embed/</code> in the URL.</em>
-    </p>
-  </div>
-</section>
 
 <!-- SERVICES -->
 <section id="services" class="section-alt">
