@@ -11,50 +11,102 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
-.container{max-width:1100px;margin:0 auto;padding:0 32px}
+.container{max-width:1200px;margin:0 auto;padding:0 32px}
 .navbar{position:sticky;top:0;z-index:50;background:rgba(15,15,15,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
-.nav-container{max-width:1100px;margin:0 auto;padding:18px 32px;display:flex;align-items:center;justify-content:space-between}
+.nav-container{max-width:1200px;margin:0 auto;padding:18px 32px;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{display:flex;align-items:center;gap:10px}
-.logo-icon{width:40px;height:40px;border-radius:10px;background:var(--accent);display:flex;align-items:center;justify-content:center;color:#0f0f0f;font-weight:700}
-.nav-logo span{font-weight:700;font-size:20px;letter-spacing:-.02em;color:var(--text)}
-.nav-links{display:flex;gap:28px;align-items:center;font-size:15px;font-weight:500}
+.logo-icon{width:44px;height:44px;border-radius:10px;background:var(--accent);display:flex;align-items:center;justify-content:center;color:#0f0f0f;font-weight:700}
+.nav-logo span{font-weight:700;font-size:22px;letter-spacing:-.02em;color:var(--text)}
+.nav-links{display:flex;gap:32px;align-items:center;font-size:15px;font-weight:500}
 .nav-link{color:var(--muted);text-decoration:none;transition:color .2s}
 .nav-link:hover{color:var(--accent)}
-.nav-btn{padding:10px 22px;border-radius:8px;background:var(--accent);color:#0f0f0f;text-decoration:none;font-weight:700;font-size:14px;transition:all .2s}
+.nav-btn{padding:10px 24px;border-radius:8px;background:var(--accent);color:#0f0f0f;text-decoration:none;font-weight:700;font-size:14px;transition:all .2s}
 .nav-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(250,204,21,.3)}
-.hero{position:relative;overflow:hidden}
-.hero-bg{position:absolute;top:0;right:0;width:50%;height:100%;background:linear-gradient(135deg,var(--accent-soft),transparent 70%);pointer-events:none}
-.hero-inner{max-width:1100px;margin:0 auto;padding:90px 32px 100px;display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center;position:relative}
-.hero-tag{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:var(--accent-soft);border:1px solid rgba(250,204,21,.25);border-radius:20px;margin-bottom:24px}
+
+/* ===== HERO with expanded sides ===== */
+.hero{position:relative;overflow:hidden;padding:40px 0}
+.hero-bg{position:absolute;top:0;right:0;width:55%;height:100%;background:radial-gradient(ellipse at 70% 30%,var(--accent-soft),transparent 60%);pointer-events:none}
+.hero-grid-lines{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;opacity:.3;mask-image:linear-gradient(90deg,transparent,black 30%,black 70%,transparent);pointer-events:none}
+.hero-inner{max-width:1200px;margin:0 auto;padding:60px 32px 80px;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:stretch;position:relative;z-index:2}
+
+/* LEFT SIDE - expanded */
+.hero-left{display:flex;flex-direction:column;justify-content:center}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:var(--accent-soft);border:1px solid rgba(250,204,21,.3);border-radius:20px;margin-bottom:28px;width:fit-content}
 .hero-tag span{font-size:13px;font-weight:600;color:var(--accent)}
-.hero-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
-.hero h1{font-size:clamp(36px,4.5vw,52px);font-weight:700;line-height:1.15;letter-spacing:-.02em;margin-bottom:20px}
+.hero-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.2)}}
+.hero h1{font-size:clamp(38px,4.8vw,58px);font-weight:700;line-height:1.1;letter-spacing:-.02em;margin-bottom:24px}
 .hero h1 .yellow{color:var(--accent)}
-.hero p{color:var(--muted);font-size:17px;line-height:1.7;margin-bottom:36px;max-width:520px}
-.hero-buttons{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:32px}
-.btn-primary{padding:14px 30px;border-radius:10px;background:var(--accent);color:#0f0f0f;text-decoration:none;font-weight:700;font-size:15px;display:inline-block;transition:all .2s}
+.hero-subtitle{color:var(--muted);font-size:18px;line-height:1.7;margin-bottom:28px;max-width:560px}
+.hero-features{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:32px}
+.hero-feature{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--text)}
+.hero-feature svg{color:var(--accent);flex-shrink:0;margin-top:2px}
+.hero-feature strong{display:block;font-weight:600}
+.hero-feature span{color:var(--muted);font-size:13px}
+.hero-buttons{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:36px}
+.btn-primary{padding:14px 32px;border-radius:10px;background:var(--accent);color:#0f0f0f;text-decoration:none;font-weight:700;font-size:15px;display:inline-block;transition:all .2s}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(250,204,21,.35)}
-.btn-secondary{padding:14px 30px;border-radius:10px;background:transparent;color:var(--text);text-decoration:none;font-weight:600;font-size:15px;border:1.5px solid var(--border);display:inline-flex;align-items:center;gap:8px;transition:all .2s}
+.btn-secondary{padding:14px 32px;border-radius:10px;background:transparent;color:var(--text);text-decoration:none;font-weight:600;font-size:15px;border:1.5px solid var(--border);display:inline-flex;align-items:center;gap:8px;transition:all .2s}
 .btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
-.hero-checks{display:flex;gap:32px;flex-wrap:wrap}
-.hero-checks div{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}
-.hero-checks svg{color:var(--accent)}
-.hero-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px;box-shadow:0 20px 60px rgba(0,0,0,.4)}
-.hero-truck{display:flex;align-items:center;justify-content:center;width:100%;height:180px;background:linear-gradient(135deg,rgba(250,204,21,.1),rgba(249,115,22,.08));border-radius:14px;margin-bottom:24px;border:1px solid rgba(250,204,21,.1)}
-.hero-available{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:14px}
-.hero-available .label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
-.hero-available .status{font-weight:700;font-size:16px;color:var(--accent)}
-.hero-response{font-size:13px;color:var(--muted)}
-.hero-response strong{color:var(--text)}
+.hero-trust{display:flex;gap:28px;flex-wrap:wrap;padding-top:28px;border-top:1px solid var(--border)}
+.hero-trust-item{display:flex;align-items:center;gap:10px}
+.hero-trust-avatars{display:flex}
+.avatar{width:32px;height:32px;border-radius:50%;border:2px solid var(--bg);margin-left:-8px;background:linear-gradient(135deg,var(--accent),var(--accent2))}
+.avatar:first-child{margin-left:0}
+.hero-trust-text{font-size:13px;color:var(--muted)}
+.hero-trust-text strong{color:var(--text)}
+.hero-stars{color:var(--accent);font-size:13px;letter-spacing:2px}
+
+/* RIGHT SIDE - expanded */
+.hero-right{display:flex;flex-direction:column;gap:20px}
+.hero-main-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;box-shadow:0 20px 60px rgba(0,0,0,.4);position:relative;overflow:hidden;flex:1}
+.hero-main-card::before{content:"";position:absolute;top:-50%;right:-20%;width:80%;height:200%;background:radial-gradient(circle,var(--accent-soft),transparent 60%);pointer-events:none}
+.truck-scene{position:relative;width:100%;height:220px;background:linear-gradient(180deg,#1a1a2e 0%,#16213e 50%,#0f0f0f 100%);border-radius:14px;border:1px solid rgba(250,204,21,.15);overflow:hidden;margin-bottom:20px}
+.truck-sky{position:absolute;top:0;left:0;width:100%;height:55%}
+.truck-moon{position:absolute;top:20px;right:30px;width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fffacd,var(--accent));box-shadow:0 0 25px rgba(250,204,21,.3)}
+.truck-star{position:absolute;width:2px;height:2px;background:white;border-radius:50%;animation:twinkle 2s infinite}
+@keyframes twinkle{0%,100%{opacity:.3}50%{opacity:1}}
+.truck-buildings{position:absolute;bottom:45%;left:0;width:100%;height:25%;display:flex;align-items:flex-end;gap:4px;padding:0 10px}
+.truck-bld{flex:1;background:#111;border-top:2px solid #333;position:relative}
+.truck-bld::after{content:"";position:absolute;inset:6px;display:grid;grid-template-columns:repeat(2,1fr);gap:3px}
+.truck-road{position:absolute;bottom:0;left:0;width:100%;height:45%;background:#2a2a2a;border-top:3px solid #444}
+.truck-road-line{position:absolute;top:50%;left:0;width:200%;height:4px;background:repeating-linear-gradient(90deg,var(--accent) 0 30px,transparent 30px 60px);animation:roadMove .8s linear infinite;transform:translateY(-50%)}
+@keyframes roadMove{from{transform:translateX(0) translateY(-50%)}to{transform:translateX(-50%) translateY(-50%)}}
+.truck-svg{position:absolute;bottom:18%;left:50%;transform:translateX(-50%);z-index:5;animation:truckBounce .35s ease-in-out infinite alternate}
+@keyframes truckBounce{from{transform:translateX(-50%) translateY(0)}to{transform:translateX(-50%) translateY(-3px)}}
+.truck-wheel{animation:wheelSpin .4s linear infinite;transform-origin:center}
+@keyframes wheelSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.hero-card-info{position:relative;z-index:2}
+.hero-card-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:16px}
+.hero-card-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.hero-card-status{font-weight:700;font-size:16px;color:var(--accent);display:flex;align-items:center;gap:8px}
+.hero-card-status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 1.5s infinite}
+.hero-arrow{width:40px;height:40px;border-radius:50%;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;color:var(--accent);transition:all .2s}
+.hero-main-card:hover .hero-arrow{background:var(--accent);color:#0f0f0f}
+.hero-card-mini{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mini-info{padding:12px;background:rgba(255,255,255,.03);border-radius:10px;border:1px solid var(--border)}
+.mini-info .lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.mini-info .val{font-weight:700;font-size:15px;color:var(--text)}
+.mini-info .val.accent{color:var(--accent)}
+.hero-mini-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hero-mini-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;display:flex;align-items:center;gap:14px;transition:all .2s}
+.hero-mini-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.mini-card-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mini-card-icon.a{background:var(--accent-soft);color:var(--accent)}
+.mini-card-icon.b{background:var(--accent2-soft);color:var(--accent2)}
+.mini-card-text .t{font-weight:700;font-size:14px}
+.mini-card-text .s{font-size:12px;color:var(--muted)}
+
 .stats-bar{background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.stats-inner{max-width:1100px;margin:0 auto;padding:40px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
-.stat-number{font-size:42px;font-weight:700;line-height:1}
+.stats-inner{max-width:1200px;margin:0 auto;padding:44px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.stat-number{font-size:44px;font-weight:700;line-height:1}
 .stat-number.accent{color:var(--accent)}
 .stat-number.accent2{color:var(--accent2)}
 .stat-label{color:var(--muted);font-size:13px;margin-top:8px;letter-spacing:.05em}
-.section{max-width:1100px;margin:0 auto;padding:90px 32px}
+
+.section{max-width:1200px;margin:0 auto;padding:90px 32px}
 .section-alt{background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);max-width:100%;padding:90px 0}
-.section-alt .container{max-width:1100px;margin:0 auto;padding:0 32px}
+.section-alt .container{max-width:1200px;margin:0 auto;padding:0 32px}
 .section-header{text-align:center;margin-bottom:56px}
 .section-label{font-size:13px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
 .section-label.alt{color:var(--accent2)}
@@ -103,7 +155,7 @@ textarea.form-input{resize:vertical}
 .submit-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(250,204,21,.35)}
 .form-msg{text-align:center;font-size:14px;min-height:20px;margin-top:12px}
 .footer{background:#000;color:#cbd5e1;padding:40px 32px 28px;border-top:2px solid var(--accent)}
-.footer-inner{max-width:1100px;margin:0 auto}
+.footer-inner{max-width:1200px;margin:0 auto}
 .footer-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.08)}
 .footer-brand{display:flex;align-items:center;gap:10px}
 .footer-logo{width:36px;height:36px;border-radius:9px;background:var(--accent);display:flex;align-items:center;justify-content:center}
@@ -113,17 +165,19 @@ textarea.form-input{resize:vertical}
 .footer-links{display:flex;gap:24px}
 .footer-links a{color:#94a3b8;text-decoration:none;transition:color .2s}
 .footer-links a:hover{color:var(--accent)}
-@media(max-width:900px){
+@media(max-width:960px){
   .hero-inner,.why-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
   .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .hero-mini-cards{grid-template-columns:1fr 1fr}
 }
 @media(max-width:640px){
   .nav-links .nav-link:not(.nav-btn){display:none}
   .container,.hero-inner,.section,.stats-inner{padding-left:20px;padding-right:20px}
   .section-alt .container{padding:0 20px}
-  .form-row{grid-template-columns:1fr}
-  .hero-checks{gap:16px}
+  .form-row,.hero-features{grid-template-columns:1fr}
+  .hero-mini-cards{grid-template-columns:1fr}
   .stat-number{font-size:34px}
+  .hero-trust{gap:16px}
 }
 </style>
 </head>
@@ -143,53 +197,147 @@ textarea.form-input{resize:vertical}
       <a href="#services" class="nav-link">Services</a>
       <a href="#why" class="nav-link">Why Us</a>
       <a href="#coverage" class="nav-link">Coverage</a>
-      <a href="#contact" class="nav-btn">Call Now</a>
+      <a href="tel:15901403759" class="nav-btn">Call Now</a>
     </div>
   </div>
 </nav>
 
-<!-- HERO / HOME -->
+<!-- HERO - EXPANDED VERSION -->
 <section id="home" class="hero">
   <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
   <div class="hero-inner">
-    <div>
-      <div class="hero-tag"><div class="hero-dot"></div><span>Local Truck Transport</span></div>
+    
+    <!-- ===== LEFT SIDE - EXPANDED ===== -->
+    <div class="hero-left">
+      <div class="hero-tag"><div class="hero-dot"></div><span>Local Truck Transport · Berlin</span></div>
       <h1>Fast, affordable, and reliable <span class="yellow">local truck transport</span> for homes, offices, and businesses.</h1>
-      <p>From home moves and office relocations to furniture transport and small cargo deliveries, we help you move and deliver with ease.</p>
+      <p class="hero-subtitle">From home moves and office relocations to furniture transport and small cargo deliveries, we help you move and deliver with ease across Berlin and beyond.</p>
+      
+      <!-- Feature grid -->
+      <div class="hero-features">
+        <div class="hero-feature">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M3 9h6"/></svg>
+          <div><strong>Home & Office</strong><span>Full service moves</span></div>
+        </div>
+        <div class="hero-feature">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          <div><strong>Furniture</strong><span>Heavy & bulky items</span></div>
+        </div>
+        <div class="hero-feature">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <div><strong>Cargo Delivery</strong><span>Fast point-to-point</span></div>
+        </div>
+        <div class="hero-feature">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div><strong>Fully Insured</strong><span>Protected moves</span></div>
+        </div>
+      </div>
+      
       <div class="hero-buttons">
         <a href="#contact" class="btn-primary">Request a Quote</a>
-        <a href="tel:+495111234567" class="btn-secondary">
+        <a href="tel:15901403759" class="btn-secondary">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           Call Now
         </a>
       </div>
-      <div class="hero-checks">
-        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Free quotes</div>
-        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Same-day service</div>
-        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Insured & reliable</div>
-      </div>
-    </div>
-    <div class="hero-card">
-      <div class="hero-truck">
-        <svg width="140" height="100" viewBox="0 0 140 100" fill="none">
-          <rect x="10" y="25" width="70" height="45" rx="4" fill="var(--accent)" opacity=".9"/>
-          <rect x="18" y="33" width="22" height="14" rx="2" fill="#0f0f0f" opacity=".3"/>
-          <rect x="80" y="40" width="45" height="30" rx="3" fill="var(--accent2)" opacity=".85"/>
-          <circle cx="30" cy="75" r="10" fill="#1a1a1a" stroke="var(--accent)" stroke-width="2"/>
-          <circle cx="30" cy="75" r="4" fill="#333"/>
-          <circle cx="100" cy="75" r="10" fill="#1a1a1a" stroke="var(--accent)" stroke-width="2"/>
-          <circle cx="100" cy="75" r="4" fill="#333"/>
-          <rect x="85" y="45" width="12" height="8" rx="1" fill="#0f0f0f" opacity=".3"/>
-        </svg>
-      </div>
-      <div class="hero-available">
-        <div><div class="label">Available Today</div><div class="status">● Open for bookings</div></div>
-        <div style="width:44px;height:44px;border-radius:50%;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;color:var(--accent);">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      
+      <!-- Trust row -->
+      <div class="hero-trust">
+        <div class="hero-trust-item">
+          <div class="hero-trust-avatars">
+            <div class="avatar"></div>
+            <div class="avatar"></div>
+            <div class="avatar"></div>
+            <div class="avatar"></div>
+          </div>
+          <div class="hero-trust-text"><strong>2,400+</strong> happy customers</div>
+        </div>
+        <div class="hero-trust-item">
+          <div class="hero-stars">★★★★★</div>
+          <div class="hero-trust-text"><strong>4.9/5</strong> rating</div>
         </div>
       </div>
-      <div class="hero-response">Typical response: <strong>under 30 minutes</strong></div>
     </div>
+    
+    <!-- ===== RIGHT SIDE - EXPANDED ===== -->
+    <div class="hero-right">
+      <!-- Main truck scene card -->
+      <div class="hero-main-card">
+        <div class="truck-scene" id="truckScene">
+          <div class="truck-sky">
+            <div class="truck-moon"></div>
+          </div>
+          <div class="truck-buildings" id="truckBuildings"></div>
+          <div class="truck-road">
+            <div class="truck-road-line"></div>
+          </div>
+          <svg class="truck-svg" width="200" height="100" viewBox="0 0 200 100">
+            <rect x="10" y="25" width="100" height="50" rx="4" fill="#facc15"/>
+            <rect x="20" y="35" width="35" height="20" rx="2" fill="#0f0f0f" opacity=".25"/>
+            <rect x="115" y="40" width="65" height="40" rx="3" fill="#f97316"/>
+            <rect x="122" y="47" width="20" height="15" rx="1" fill="#0f0f0f" opacity=".3"/>
+            <circle cx="178" cy="55" r="4" fill="#fff" opacity=".8"/>
+            <g class="truck-wheel" style="transform-origin:40px 80px;">
+              <circle cx="40" cy="80" r="14" fill="#1a1a1a" stroke="#facc15" stroke-width="2"/>
+              <circle cx="40" cy="80" r="5" fill="#444"/>
+              <line x1="40" y1="66" x2="40" y2="94" stroke="#666" stroke-width="2"/>
+              <line x1="26" y1="80" x2="54" y2="80" stroke="#666" stroke-width="2"/>
+            </g>
+            <g class="truck-wheel" style="transform-origin:150px 80px;">
+              <circle cx="150" cy="80" r="14" fill="#1a1a1a" stroke="#facc15" stroke-width="2"/>
+              <circle cx="150" cy="80" r="5" fill="#444"/>
+              <line x1="150" y1="66" x2="150" y2="94" stroke="#666" stroke-width="2"/>
+              <line x1="136" y1="80" x2="164" y2="80" stroke="#666" stroke-width="2"/>
+            </g>
+          </svg>
+        </div>
+        <div class="hero-card-info">
+          <div class="hero-card-row">
+            <div>
+              <div class="hero-card-label">Available Today</div>
+              <div class="hero-card-status">Open for bookings</div>
+            </div>
+            <div class="hero-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </div>
+          </div>
+          <div class="hero-card-mini">
+            <div class="mini-info">
+              <div class="lbl">Response Time</div>
+              <div class="val accent">Under 30 min</div>
+            </div>
+            <div class="mini-info">
+              <div class="lbl">Service Area</div>
+              <div class="val">Berlin & 100km</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Two mini cards below -->
+      <div class="hero-mini-cards">
+        <div class="hero-mini-card">
+          <div class="mini-card-icon a">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="mini-card-text">
+            <div class="t">100% Insured</div>
+            <div class="s">Your items protected</div>
+          </div>
+        </div>
+        <div class="hero-mini-card">
+          <div class="mini-card-icon b">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="mini-card-text">
+            <div class="t">Mon–Sat: 7–20</div>
+            <div class="s">Extended hours</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
   </div>
 </section>
 
@@ -270,16 +418,16 @@ textarea.form-input{resize:vertical}
     <div class="section-header">
       <p class="section-label">Coverage Area</p>
       <h2 class="section-title">Where we operate</h2>
-      <p style="color:var(--muted);font-size:16px;margin-top:12px;max-width:500px;margin-left:auto;margin-right:auto;">Serving the greater Hanover area and surrounding regions within 100 km.</p>
+      <p style="color:var(--muted);font-size:16px;margin-top:12px;max-width:500px;margin-left:auto;margin-right:auto;">Serving the greater Berlin area and surrounding regions within 100 km.</p>
     </div>
     <div class="coverage-grid">
-      <div class="coverage-item"><div class="coverage-dot"></div><span>Hanover city</span></div>
-      <div class="coverage-item"><div class="coverage-dot"></div><span>Laatzen</span></div>
-      <div class="coverage-item"><div class="coverage-dot"></div><span>Seelze</span></div>
-      <div class="coverage-item"><div class="coverage-dot"></div><span>Garbsen</span></div>
-      <div class="coverage-item"><div class="coverage-dot"></div><span>Langenhagen</span></div>
-      <div class="coverage-item"><div class="coverage-dot"></div><span>Barsinghausen</span></div>
-      <div class="coverage-item"><div class="coverage-dot"></div><span>Wunstorf</span></div>
+      <div class="coverage-item"><div class="coverage-dot"></div><span>Berlin city</span></div>
+      <div class="coverage-item"><div class="coverage-dot"></div><span>Potsdam</span></div>
+      <div class="coverage-item"><div class="coverage-dot"></div><span>Spandau</span></div>
+      <div class="coverage-item"><div class="coverage-dot"></div><span>Köpenick</span></div>
+      <div class="coverage-item"><div class="coverage-dot"></div><span>Marzahn</span></div>
+      <div class="coverage-item"><div class="coverage-dot"></div><span>Pankow</span></div>
+      <div class="coverage-item"><div class="coverage-dot"></div><span>Charlottenburg</span></div>
       <div class="coverage-item"><div class="coverage-dot"></div><span>+ more areas</span></div>
     </div>
     <p style="text-align:center;margin-top:28px;font-size:14px;color:var(--muted);">Not sure if we cover your area? <a href="#contact" style="color:var(--accent);font-weight:600;text-decoration:none;">Contact us</a> and we'll let you know.</p>
@@ -293,9 +441,9 @@ textarea.form-input{resize:vertical}
       <p class="section-label alt">Get In Touch</p>
       <h2 class="section-title" style="margin-bottom:20px;line-height:1.2;">Ready to book your <span style="color:var(--accent)">transport</span>?</h2>
       <p style="color:var(--muted);font-size:16px;line-height:1.7;margin-bottom:32px;">Call us directly or fill out the form for a free quote. We respond fast — usually within 30 minutes during business hours.</p>
-      <a href="tel:+495111234567" class="contact-info-card">
+      <a href="tel:15901403759" class="contact-info-card">
         <div class="contact-icon a"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-        <div><div class="lbl">Call us</div><div class="val">+49 511 123 4567</div></div>
+        <div><div class="lbl">Call us</div><div class="val">15901403759</div></div>
       </a>
       <div class="contact-info-card">
         <div class="contact-icon b"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
@@ -312,7 +460,7 @@ textarea.form-input{resize:vertical}
       <form onsubmit="submitQuote(event)">
         <div class="form-row">
           <div class="form-group"><label>Your Name</label><input type="text" required class="form-input" placeholder="John Smith"></div>
-          <div class="form-group"><label>Phone Number</label><input type="tel" required class="form-input" placeholder="+49 ..."></div>
+          <div class="form-group"><label>Phone Number</label><input type="tel" required class="form-input" placeholder="Your phone"></div>
         </div>
         <div class="form-group"><label>Email Address</label><input type="email" class="form-input" placeholder="you@email.com"></div>
         <div class="form-group">
@@ -354,7 +502,7 @@ textarea.form-input{resize:vertical}
     <div class="footer-bottom">
       <div>© 2026 Transpoter. All rights reserved.</div>
       <div class="footer-links">
-        <a href="tel:+4915901403759">+49 15901403759</a>
+        <a href="tel:15901403759">15901403759</a>
         <a href="https://github.com/shandavid194-crypto/Transpoter" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
@@ -362,6 +510,31 @@ textarea.form-input{resize:vertical}
 </footer>
 
 <script>
+// Generate stars and buildings for truck scene
+(function(){
+  var sky = document.querySelector('.truck-sky');
+  if(sky){
+    for(var i=0;i<25;i++){
+      var s = document.createElement('div');
+      s.className = 'truck-star';
+      s.style.left = Math.random()*100 + '%';
+      s.style.top = Math.random()*80 + '%';
+      s.style.animationDelay = Math.random()*2 + 's';
+      sky.appendChild(s);
+    }
+  }
+  var bld = document.getElementById('truckBuildings');
+  if(bld){
+    var h = [55,80,45,95,65,40,75,50,85,60];
+    for(var j=0;j<10;j++){
+      var b = document.createElement('div');
+      b.className = 'truck-bld';
+      b.style.height = h[j] + '%';
+      bld.appendChild(b);
+    }
+  }
+})();
+
 function submitQuote(e){
   e.preventDefault();
   var msg=document.getElementById('formMessage');
